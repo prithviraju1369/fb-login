@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     if (!req.session.login) {
-        res.send(path.join(__dirname, './public'));
+        res.sendFile(path.join(__dirname, './public'));
     } else {
         res.send('logged in!');
     }
