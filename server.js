@@ -6,7 +6,7 @@ var router = express.Router();
 var bodyParser = require('body-parser')
 var httpsRedirect = require("express-https-redirect");
 
-app.use(session({ secret: 'testsecret', cookie: { secure: true } }));
+app.use(session({ secret: 'testsecret', saveUninitialized: true, resave: true }));
 
 app.use("/", httpsRedirect());
 // app.use(express.static(path.join(__dirname, './public')));
@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
     req.session.login = true;
+    req.session.save();
     res.send('OK');
 })
 
